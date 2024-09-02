@@ -1,8 +1,16 @@
 import React from 'react'
 import { Box,Button,styled,Typography } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LoginDialogue from '../login/LoginDialogue';
+import { useState } from 'react';
 
 function HeaderButtons() {
+
+const [open,setOpen] = useState(false);
+
+const handleClick = () =>{
+    setOpen(true);
+}
 
 const Wrapper = styled(Box)`
     display:flex;
@@ -28,13 +36,15 @@ const LoginButton = styled(Button)`
     `
   return (
     <Wrapper>
-        <LoginButton variant="contained">Login</LoginButton>
+        <LoginButton variant="contained" onClick={() => handleClick()}>Login</LoginButton>
         <Typography style={{marginTop:3, width:135}}>Become a seller</Typography>
         <Typography style={{marginTop:3}}>More</Typography>
         <Container>
             <ShoppingCartIcon/>
             <Typography>Cart</Typography>
         </Container>
+        <LoginDialogue open={open} setOpen={setOpen}/>
+
       
     </Wrapper>
   )
